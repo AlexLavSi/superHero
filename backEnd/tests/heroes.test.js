@@ -4,7 +4,6 @@ const chaiHttp = require('chai-http');
 const should = chai.should();
 chai.use(chaiHttp)
 
-
 describe('/GET all heroes', () => {
   it('it should Get all heroes', (done) => {
     chai

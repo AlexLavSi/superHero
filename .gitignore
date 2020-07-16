@@ -106,3 +106,5 @@ dist
 .idea/
 backEnd/package-lock.json
 db/dbSuperHero/
+
+frontEnd/package-lock.json

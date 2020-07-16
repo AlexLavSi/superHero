@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  db_superHero:
+    image: mysql:8.0.17
+    container_name: db_superHero
+    restart: always
+    environment:
+      TZ: UTC
+      MYSQL_ROOT_PASSWORD: userRootSuperHeroPassword
+      MYSQL_DATABASE: super_hero
+      MYSQL_USER: superHeroAdmin
+      MYSQL_PASSWORD: superHeroPassword
+    volumes:
+      - ./db/dbSuperHero:/var/lib/mysql
+      - ./db/docker-entrypoint-initdb.d/superHero/mycustom.cnf:/etc/mysql/conf.d/custom.cnf
+      - ./db/docker-entrypoint-initdb.d/superHero/0001_user.sql:/docker-entrypoint-initdb.d/0001_user.sql
+      - ./db/docker-entrypoint-initdb.d/superHero/0002_create_table_super_hero.sql:/docker-entrypoint-initdb.d/0002_create_table_super_hero.sql
+    networks:
+      - superHero
+
+  haproxy_super_hero:
+    build: ./haproxy
+    container_name: haproxy_super_hero
+    volumes:
+      - ./haproxy:/usr/local/etc/haproxy/
+    ports:
+      - 33068:33068
+    networks:
+      - superHero
+
+  server_super_hero:
+    build: ./backEnd
+    restart: always
+    depends_on:
+      - db_superHero
+    volumes:
+      - ./backEnd:/home/superHero
+      - ./backEnd/node_modules:/home/superHero/node_modules
+    container_name: server_super_hero
+    ports:
+      - 3000:3000
+    networks:
+      - superHero
+
+networks:
+  superHero:

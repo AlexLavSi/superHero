@@ -1,7 +1,7 @@
 const {expect} = require("chai");
 const prepareHeroData = require("../app/helpers/prepareHeroData").prepareHeroData;
 
-describe('positive', function () {
+describe('prepare hero data', function () {
   it('return Hero Data', function () {
     const request = {
       id: 1,

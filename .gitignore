@@ -104,7 +104,7 @@ dist
 .tern-port
 
 .idea/
-backEnd/package-lock.json
+back-end/package-lock.json
 db/dbSuperHero/
 
-frontEnd/package-lock.json
+front-end/package-lock.json

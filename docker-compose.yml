@@ -30,7 +30,7 @@ services:
       - superHero
 
   server_super_hero:
-    build: ./backEnd
+    build: back-end
     restart: always
     depends_on:
       - db_superHero

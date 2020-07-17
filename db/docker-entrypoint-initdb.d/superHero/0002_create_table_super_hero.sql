@@ -108,7 +108,7 @@ insert into heroes (id, intelligence, strength, speed, durability, power, combat
       "alignment": "good"
     }'),
 
-    (8, 69, 10, 33, 40, 37, 50, 'https://www.superherodb.com/pictures2/portraits/10/100/626.jpg"', '{
+    (8, 69, 10, 33, 40, 37, 50, 'https://www.superherodb.com/pictures2/portraits/10/100/626.jpg', '{
       "full-name": "Adam Strange",
       "alter-egos": "No alter egos found.",
       "aliases": [
@@ -121,7 +121,7 @@ insert into heroes (id, intelligence, strength, speed, durability, power, combat
       "alignment": "good"
     }'),
 
-    (10, 10, 8, 13, 5, 5, 20, 'https://www.superherodb.com/pictures2/portraits/10/100/10255.jpg"', '{
+    (10, 10, 8, 13, 5, 5, 20, 'https://www.superherodb.com/pictures2/portraits/10/100/10255.jpg', '{
       "full-name": "Bob",
       "alter-egos": "No alter egos found.",
       "aliases": [

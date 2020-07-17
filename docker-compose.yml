@@ -43,5 +43,16 @@ services:
     networks:
       - superHero
 
+#  client_super_hero:
+#    build: front-end
+#    restart: always
+#      depends_on:
+#        - server_super_hero
+#    container_name: client_super_hero
+#    ports:
+#      - 4200:4200
+#    networks:
+#      - superHero
+
 networks:
   superHero:

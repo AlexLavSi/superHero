@@ -35,24 +35,29 @@ services:
     depends_on:
       - db_superHero
     volumes:
-      - ./backEnd:/home/superHero
-      - ./backEnd/node_modules:/home/superHero/node_modules
+      - ./back-end:/home/superHero
+      - ./back-end/node_modules:/home/superHero/node_modules
     container_name: server_super_hero
     ports:
       - 3000:3000
     networks:
       - superHero
 
-#  client_super_hero:
-#    build: front-end
-#    restart: always
-#      depends_on:
-#        - server_super_hero
-#    container_name: client_super_hero
-#    ports:
-#      - 4200:4200
-#    networks:
-#      - superHero
+  client_super_hero:
+    build: front-end
+    restart: always
+    depends_on:
+      - server_super_hero
+    volumes:
+      - ./front-end:/usr/src/app/front-end
+      - /usr/src/app/front-end/node_modules
+    container_name: client_super_hero
+    ports:
+      - 4200:4200
+    links:
+      - server_super_hero
+    networks:
+      - superHero
 
 networks:
   superHero:

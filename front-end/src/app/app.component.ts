@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {forkJoin} from 'rxjs';
 
 import {HeroesService} from '../services/heroes.service';
-import {forkJoin} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -11,6 +11,9 @@ import {forkJoin} from "rxjs";
 
 export class AppComponent implements OnInit {
   public heroes: any = [];
+  public powerstats: string[] = [
+    'intelligence', 'strength', 'speed', 'durability', 'power', 'combat'
+  ];
 
   constructor(
     private heroesService: HeroesService,

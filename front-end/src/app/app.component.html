@@ -1,5 +1,16 @@
 <router-outlet></router-outlet>
 
+<div>
+  <mat-form-field>
+    <mat-label>Favorite food</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let p of powerstats" [value]="p">
+        {{p}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
 <div class="container" *ngIf="heroes.length > 0">
   <mat-card class="hero" *ngFor="let h of heroes">
     <img mat-card-image src="{{h.img}}" alt="Photo of a hero">

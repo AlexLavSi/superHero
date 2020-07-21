@@ -1,13 +1,35 @@
 <router-outlet></router-outlet>
 
 <div>
+  <form [formGroup]="powerStats">
+    <mat-form-field>
+      <mat-label>Power stats</mat-label>
+      <mat-select formControlName="power">
+        <mat-option *ngFor="let p of powers" [value]="p">
+          {{p}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Value power stats</mat-label>
+      <input matInput placeholder="Ex. 56" formControlName="value">
+    </mat-form-field>
+
+    <button mat-button type="button" [disabled]="!powerStats.valid" (click)="onClickSort(powerStats.getRawValue())">
+      Sort
+    </button>
+
+    <button mat-button type="button" (click)="onClickClear()">
+      Clear
+    </button>
+  </form>
+</div>
+
+<div>
   <mat-form-field>
-    <mat-label>Favorite food</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let p of powerstats" [value]="p">
-        {{p}}
-      </mat-option>
-    </mat-select>
+    <mat-label>Search by biography</mat-label>
+    <input matInput placeholder="Ex. good" (keyup)="onKyeDown($event)">
   </mat-form-field>
 </div>
 

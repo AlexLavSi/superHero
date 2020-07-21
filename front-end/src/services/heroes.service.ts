@@ -20,7 +20,15 @@ export class HeroesService {
   getAll() {
     return this.httpService.get(this.endpoint)
       .pipe(
-        map(data => data),
+        map(heroes => heroes),
+        catchError(err => of({ isError: true, error: err })),
+      );
+  }
+
+  sort(data) {
+    return this.httpService.get(`${this.endpoint}/${data}`)
+      .pipe(
+        map(heroes => heroes),
         catchError(err => of({ isError: true, error: err })),
       );
   }

@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const db = require("../models");
 const prepareHeroData = require("../helpers/prepareHeroData").prepareHeroData;
 
@@ -18,13 +19,37 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  Heroes.findAll({ where: {} })
-    .then(data => {
-      const newData = prepareHeroData(data);
+    const query = req.query;
+    const options = { where: { } };
 
-      res.send(newData);
-    })
-    .catch(err => res.status(500).send({ message: err.message || "Some error occurred while retrieving Heroes." }));
+    if (query?.p) {
+        options.order = [[query.p, 'ASC']];
+    }
+
+    if (query?.v) {
+        options.where = {
+            [query.p]: {
+                [Op.gt]: query.v,
+            }
+        };
+        options.order = [[query.p, 'ASC']];
+    }
+
+    if (query?.f) {
+        options.where = {
+            biography: {
+                    [Op.like]: `%${query?.f}%`
+                }
+            };
+    }
+
+    Heroes.findAll(options)
+        .then(data => {
+            const newData = prepareHeroData(data);
+
+            res.send(newData);
+        })
+        .catch(err => res.status(500).send({ message: err.message || "Some error occurred while retrieving Heroes." }));
 };
 
 exports.findOne = (req, res) => {

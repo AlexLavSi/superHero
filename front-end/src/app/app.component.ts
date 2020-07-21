@@ -66,14 +66,15 @@ export class AppComponent implements OnInit {
     this.powerStats.markAsPristine();
     this.powerStats.markAsUntouched();
     this.initForm();
+    this.heroesService.getAll().subscribe(d => this.prepareHeroes(d));
   }
 
   public onKyeDown(e) {
     const words = e.target.value;
 
-    if (words?.length > 3) this.heroesService.sort(`?f=${words}`).subscribe(d => this.prepareHeroes(d));
+    if (words?.length > 2) this.heroesService.sort(`?f=${words}`).subscribe(d => this.prepareHeroes(d));
 
-    if ((e.key === 'Backspace' || e.key === 'Delete') && words?.length < 3) {
+    if ((e.key === 'Backspace' || e.key === 'Delete') && words?.length === 2) {
       this.heroesService.getAll().subscribe(d => this.prepareHeroes(d));
     }
 
